@@ -1,0 +1,66 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div *ngIf='currentContact === undefined'> There are no contacts with the id {{currentId}}</div>
+<div *ngIf='currentContact !== undefined'> 
+        <div id="topbar">
+                <a id="back" [routerLink]="['/']">&lsaquo;</a>
+                <h1>Contacts</h1>
+                <div *ngIf='currentContact.isFavorite'> 
+                    <img id="fav" srcset="\assets\Favorite%20Star%20(True)\Favorite┬áΓÇö┬áTrue.png 700w, 
+                    \assets\Favorite%20Star%20(True)\Favorite┬áΓÇö┬áTrue@2x.png 900w,
+                    \assets\Favorite%20Star%20(True)\Favorite┬áΓÇö┬áTrue@3x.png 1200w"
+                    src="\assets\Favorite%20Star%20(True)\Favorite┬áΓÇö┬áTrue@3x.png"
+                    sizes="(max-width: 700w) 11px,
+                    (max-width: 900w) 24px,
+                    (max-width: 1200w) 33px"
+                    (click)="changeFav()">
+                </div>
+                <div *ngIf='currentContact.isFavorite !== true'> 
+                    <img id="fav" srcset="\assets\Favorite%20Star%20(False)\Favorite┬áΓÇö┬áFalse.png 700w, 
+                    \assets\Favorite%20Star%20(False)\Favorite┬áΓÇö┬áFalse@2x.png 800w,
+                    \assets\Favorite%20Star%20(False)\Favorite┬áΓÇö┬áFalse@3x.png 1000w"
+                    src="\assets\Favorite%20Star%20(True)\Favorite┬áΓÇö┬áTrue@3x.png"
+                    sizes="(max-width: 700w) 11px,
+                    (max-width: 800w) 24px,
+                    (max-width: 1000w) 33px"
+                    (click)="changeFav()">                
+                </div>
+        </div>
+    <div id="mainData">
+        <img id="contactImage" [src]="currentContact.largeImageURL" onerror="this.src='assets/User Large/User ΓÇö Large@2x.png'">
+        <h2>{{currentContact.name}}</h2>
+        <h3 id="company" *ngIf="currentContact.companyName">{{ currentContact.companyName }}</h3>
+    </div>
+    <ul>
+        <div *ngIf='currentContact.emailAddress'>
+           <h3>Email</h3>
+           <li>{{currentContact.emailAddress}}</li>
+        </div>
+        <div *ngIf='currentContact.birthDate'>
+            <h3>Birthdate</h3>
+            <li>{{currentContact.birthDate}}</li>
+        </div>
+        <div *ngIf='currentContact.phone.work'>
+                <h3>Phone</h3>
+                <li>{{currentContact.phone.work}}</li>
+                <a>Work</a>
+        </div>
+        <div *ngIf='currentContact.phone.home'>
+                <h3>Phone</h3>
+                <li>{{currentContact.phone.home}}</li>
+                <a>Home</a>
+        </div>
+        <div *ngIf='currentContact.phone.mobile'>
+                <h3>Phone</h3>
+                <li>{{currentContact.phone.mobile}}</li>
+                <a>Mobile</a>
+        </div>
+        <div *ngIf='currentContact.address'>
+                <h3>Address</h3>
+                <li>{{currentContact.address.street}}</li>
+                <a>{{currentContact.address.city}}, {{currentContact.address.state}}
+                    , {{currentContact.address.country}}, {{currentContact.address.zipCode}}
+                </a>
+        </div>
+
+    </ul>
+</div>

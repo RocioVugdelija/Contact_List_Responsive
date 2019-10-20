@@ -1,0 +1,43 @@
+<div id="topbar">
+  <h1>Contacts</h1>
+</div>
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<div id="contactType">
+    <h2>Favorite Contacts</h2>
+</div>
+
+<ul> 
+
+  <a *ngFor="let contact of contacts" [routerLink]="contact.id">
+    <li *ngIf="contact.isFavorite === true" >
+      <div id="contactContainer" >
+        <img [src]="contact.smallImageURL" alt="contact image" onerror="this.src='assets/User Small/User Icon Small@3x.png'">
+        <p>⭐</p>
+        <div id="contactDetails">
+              <h3 id="name" >{{ contact.name }}</h3>
+              <h4 id="company" *ngIf="contact.companyName">{{ contact.companyName }}</h4>
+        </div>
+        
+      </div>
+    </li>
+  </a>
+
+</ul>
+<div id="contactType">
+    <h2> Other Contacts</h2>
+</div>
+<ul>
+  <a *ngFor="let contact of contacts" [routerLink]="contact.id">
+    <li *ngIf="contact.isFavorite === false" style='list-style-type: none'>
+      <div id="contactContainer">
+        <img [src]="contact.smallImageURL" onerror="this.src='assets/User Small/User Icon Small@3x.png'">
+        <ul id="contactDetails">
+          <li>
+            <h3 id="name" class="other" style="text-decoration: 'none'">{{ contact.name }}</h3>
+            <h4 id="company" class="other" *ngIf="contact.companyName">{{ contact.companyName }}</h4>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </a>
+</ul>
